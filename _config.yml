@@ -23,7 +23,7 @@ email: chloeli561@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Hello!
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://chloeli-15.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: clippocampus
 github_username:  chloeli-15
 lang:  en
@@ -41,6 +41,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+
+header_pages:
+  - about.md
+  - now.md
+  - blog
 
 # Exclude from processing.
 # The following items will not be processed, by default.
