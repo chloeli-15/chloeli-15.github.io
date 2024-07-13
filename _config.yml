@@ -42,10 +42,6 @@ exclude:
   - Gemfile.lock
   - node_modules
 
-header_pages:
-  - about.markdown
-  - now.md
-  - blog
 
 # Exclude from processing.
 # The following items will not be processed, by default.
