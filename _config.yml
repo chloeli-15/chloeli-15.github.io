@@ -43,7 +43,7 @@ exclude:
   - node_modules
 
 header_pages:
-  - about.md
+  - about.markdown
   - now.md
   - blog
 
