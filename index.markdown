@@ -4,3 +4,7 @@
 
 layout: home
 ---
+
+<h2>Welcome</h2>
+
+Welcome to my page.
