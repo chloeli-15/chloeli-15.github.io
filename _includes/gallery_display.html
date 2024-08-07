@@ -4,7 +4,7 @@
     <div class="gallery-grid">
         {% for photo in section.photos %}
         <div class="gallery-item">
-            <img src="{{ '/assets/images/' | append: photo }}" alt="">
+            <img src="{{ '/assets/images/' | append: section.dir | append: '/' | append: photo }}" alt="">
         </div>
         {% endfor %}
     </div>

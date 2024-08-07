@@ -3,6 +3,8 @@ layout: default
 ---
 
 <div class="gallery-page">
-    {% include gallery_display.html section=site.data.my_cats %}
-    {% include gallery_display.html section=site.data.my_art %}
+    {% include gallery_display.html section={ 'title': 'My Cats', 'description': 'A collection of my beloved cats.',
+    'photos': site.data.cat_photos, 'dir': 'cats' } %}
+    {% include gallery_display.html section={ 'title': 'My Art', 'description': 'A collection of my artwork.', 'photos':
+    site.data.art_photos, 'dir': 'art' } %}
 </div>
