@@ -32,14 +32,14 @@ lang:  en
 theme: minima
 markdown: kramdown
 include: ['_pages']
+collections:
+  galleries:
+    output: true
+
 # kramdown:
 #   math_engine: katex
 plugins:
   - jekyll-feed
-
-collections:
-  galleries:
-    output: true
 
 exclude:
   - Gemfile
