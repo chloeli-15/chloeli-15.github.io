@@ -1,10 +1,10 @@
 <div class="gallery-section">
-    <h2>{{ section.title }}</h2>
-    <p>{{ section.description }}</p>
+    <h2>{{ include.title }}</h2>
+    <p>{{ include.description }}</p>
     <div class="gallery-grid">
-        {% for photo in section.photos %}
+        {% for photo in include.photos %}
         <div class="gallery-item">
-            <img src="{{ '/assets/images/' | append: section.dir | append: '/' | append: photo }}" alt="">
+            <img src="{{ '/assets/images/' | append: include.dir | append: '/' | append: photo }}" alt="">
         </div>
         {% endfor %}
     </div>
