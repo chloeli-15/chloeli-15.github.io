@@ -37,6 +37,10 @@ include: ['_pages']
 plugins:
   - jekyll-feed
 
+collections:
+  galleries:
+    output: true
+
 exclude:
   - Gemfile
   - Gemfile.lock
