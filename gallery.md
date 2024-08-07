@@ -1,5 +1,5 @@
 ---
-title: My cats
+title: Gallery
 gallery_path: /assets/images/cats
 layout: gallery
 preview_image: /images/All AI images/AbstractImageAI17.png
