@@ -5,6 +5,7 @@
         {% for photo in include.photos %}
         <div class="gallery-item">
             <img src="{{ '/assets/images/' | append: include.dir | append: '/' | append: photo }}" alt="{{ photo }}">
+            <p>{{ '/assets/images/' | append: include.dir | append: '/' | append: photo }}</p> <!-- Debug output -->
         </div>
         {% endfor %}
     </div>
