@@ -8,8 +8,10 @@ layout: default
         <p class="gallery-description">{{ page.description }}</p>
         {% endif %}
     </header>
+
     <div class="gallery-content">
         {{ content }}
+
         {% if page.gallery_path %}
         <div class="photo-grid">
             {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
@@ -26,12 +28,15 @@ layout: default
         {% endif %}
     </div>
 </article>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const items = document.querySelectorAll('.photo-item');
+        const grid = document.querySelector('.photo-grid');
+        const items = grid.querySelectorAll('.photo-item');
 
         function handleImage(item) {
             const img = item.querySelector('img');
+
             if (img.complete) {
                 setImageSize(item, img);
             } else {
@@ -41,12 +46,22 @@ layout: default
 
         function setImageSize(item, img) {
             const ratio = img.naturalWidth / img.naturalHeight;
-            if (ratio > 1.5) {
+
+            if (ratio > 1.3) {  // Landscape images
                 item.style.gridColumn = "span 2";
+            } else if (ratio < 0.7) {  // Portrait images
+                item.style.gridRow = "span 2";
             }
-            if (ratio > 2.5) {
-                item.style.gridColumn = "span 3";
+
+            // For very wide panoramas
+            if (ratio > 2) {
+                item.style.gridColumn = "1 / -1";  // Span all columns
             }
+
+            // Calculate the height based on the width and original aspect ratio
+            const width = item.offsetWidth;
+            const height = width / ratio;
+            item.style.height = `${height}px`;
         }
 
         items.forEach(handleImage);
@@ -58,31 +73,22 @@ layout: default
 <style>
     .photo-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
         padding: 20px;
     }
 
     .photo-item {
         position: relative;
-        padding-bottom: 100%;
-        /* Creates a 1:1 aspect ratio */
         overflow: hidden;
+        background-color: #f0f0f0;
+        /* Light grey background */
     }
 
     .photo-item img {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-    }
-
-    @media (max-width: 900px) {
-        .photo-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        object-fit: contain;
     }
 
     @media (max-width: 600px) {
@@ -92,6 +98,7 @@ layout: default
 
         .photo-item {
             grid-column: auto !important;
+            grid-row: auto !important;
         }
     }
 </style>
