@@ -42,14 +42,14 @@ layout: default
 
         function setImageSize(item, img) {
             const ratio = img.naturalWidth / img.naturalHeight;
-            if (ratio > 1.3) {  // Landscape images
+            if (ratio > 1.5) {  // Landscape images
                 item.style.gridColumn = "span 2";
-            } else if (ratio < 0.7) {  // Portrait images
-                item.style.gridRow = "span 2";
             }
-            // For very wide panoramas
-            if (ratio > 2) {
-                item.style.gridColumn = "1 / -1";  // Span all columns
+            if (ratio > 2) {  // Very wide panoramas
+                item.style.gridColumn = "1 / -1";
+            }
+            if (ratio < 0.7) {  // Tall portrait images
+                item.style.gridRow = "span 2";
             }
         }
 
@@ -61,9 +61,9 @@ layout: default
 <style>
     .photo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        grid-auto-rows: 200px;
-        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: 300px;
+        grid-gap: 15px;
         padding: 20px;
     }
 
@@ -82,7 +82,7 @@ layout: default
         object-fit: cover;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
         .photo-grid {
             grid-template-columns: 1fr;
         }
