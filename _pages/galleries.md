@@ -33,12 +33,12 @@ permalink: /galleries/
       {% assign preview_image = gallery.preview_image | default: gallery.Preview_Image %}
       {% if preview_image %}
         {% assign image_file = site.static_files | where_exp: "file", "file.path contains preview_image" | first %}
-        {% if not image_file %}
+        {% unless image_file %}
           {% assign image_file = site.static_files | where_exp: "file", "file.path contains preview_image and file.extname == '.JPG'" | first %}
-        {% endif %}
-        {% if not image_file %}
+        {% endunless %}
+        {% unless image_file %}
           {% assign image_file = site.static_files | where_exp: "file", "file.path contains preview_image and file.extname == '.jpg'" | first %}
-        {% endif %}
+        {% endunless %}
         {% if image_file %}
           <img src="{{ image_file.path | relative_url }}" alt="{{ gallery.title }}">
         {% else %}
@@ -61,5 +61,4 @@ permalink: /galleries/
     </a>
   </div>
 {% endfor %}
-
 </div>
