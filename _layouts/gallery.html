@@ -26,21 +26,9 @@ layout: default
         {% endif %}
     </div>
 </article>
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const grid = document.querySelector('.photo-grid');
-        const items = grid.querySelectorAll('.photo-item');
-
-        let msnry;
-
-        function initMasonry() {
-            msnry = new Masonry(grid, {
-                itemSelector: '.photo-item',
-                columnWidth: '.photo-item',
-                percentPosition: true
-            });
-        }
+        const items = document.querySelectorAll('.photo-item');
 
         function handleImage(item) {
             const img = item.querySelector('img');
@@ -53,57 +41,57 @@ layout: default
 
         function setImageSize(item, img) {
             const ratio = img.naturalWidth / img.naturalHeight;
-            let width = 1;
-
-            if (ratio > 1.5) width = 2;
-            if (ratio > 2) width = 3;
-
-            item.style.width = `${width * 25}%`;
-            msnry.layout();
+            if (ratio > 1.5) {
+                item.style.gridColumn = "span 2";
+            }
+            if (ratio > 2.5) {
+                item.style.gridColumn = "span 3";
+            }
         }
 
         items.forEach(handleImage);
-        initMasonry();
 
         // Recalculate sizes on window resize
-        window.addEventListener('resize', () => {
-            items.forEach(handleImage);
-            msnry.layout();
-        });
+        window.addEventListener('resize', () => items.forEach(handleImage));
     });
 </script>
 <style>
     .photo-grid {
-        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        padding: 20px;
     }
 
     .photo-item {
-        width: 25%;
-        padding: 5px;
-        box-sizing: border-box;
+        position: relative;
+        padding-bottom: 100%;
+        /* Creates a 1:1 aspect ratio */
+        overflow: hidden;
     }
 
     .photo-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
-        display: block;
+        height: 100%;
+        object-fit: cover;
     }
 
-    @media (max-width: 1200px) {
-        .photo-item {
-            width: 33.333%;
+    @media (max-width: 900px) {
+        .photo-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    @media (max-width: 800px) {
-        .photo-item {
-            width: 50%;
+    @media (max-width: 600px) {
+        .photo-grid {
+            grid-template-columns: 1fr;
         }
-    }
 
-    @media (max-width: 500px) {
         .photo-item {
-            width: 100%;
+            grid-column: auto !important;
         }
     }
 </style>
