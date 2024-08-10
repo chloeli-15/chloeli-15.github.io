@@ -32,7 +32,7 @@ permalink: /galleries/
     <a href="{{ gallery.url | relative_url }}">
       {% assign preview_image = gallery.preview_image | default: gallery.Preview_Image %}
       {% if preview_image %}
-        {% assign image_file = site.static_files | where_exp: "file", "file.path contains preview_image" | first %}
+        {% assign image_file = site.static_files | where: "path", preview_image | first %}
         {% unless image_file %}
           {% assign image_file = site.static_files | where_exp: "file", "file.path contains preview_image and file.extname == '.JPG'" | first %}
         {% endunless %}
