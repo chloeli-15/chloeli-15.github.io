@@ -8,6 +8,9 @@ tags: [latex]
 
 A consequence of doing field-building is that I get to speak with a lot of people, with different talents and doubts, who want to work in AI safety. I want to put together a document that summarize the common uncertainties or doubts I've seen, and . 
 
+What AI risks are you worried about?
+It takes 
+
 Career advice:
 https://rohinshah.com/faq-career-advice-for-ai-alignment-researchers/
 https://www.neelnanda.io/blog/47-inside-views
